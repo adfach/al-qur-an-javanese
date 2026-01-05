@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heart, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Surah } from '@/data/surahList';
+import { Surah } from '@/types/quran';
 import { useReadingPreferences } from '@/hooks/useLocalStorage';
 import { cn } from '@/lib/utils';
 
