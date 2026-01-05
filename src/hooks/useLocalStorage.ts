@@ -29,10 +29,25 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
   return [storedValue, setValue];
 }
 
+export interface LastRead {
+  surahId: number;
+  surahName: string;
+  ayahNumber: number;
+  timestamp: number;
+}
+
+export interface FavoriteAyah {
+  surahId: number;
+  surahName: string;
+  ayahNumber: number;
+  text: string;
+  translation: string;
+}
+
 export interface ReadingPreferences {
-  lastReadSurah: number | null;
-  lastReadAyah: number | null;
+  lastRead: LastRead | null;
   favoriteSurahs: number[];
+  favoriteAyahs: FavoriteAyah[];
   fontSize: {
     arabic: number;
     latin: number;
@@ -42,14 +57,16 @@ export interface ReadingPreferences {
   showLatin: boolean;
   showTranslation: boolean;
   showTajwid: boolean;
+  showTafsir: boolean;
+  totalReadingTime: number;
 }
 
 export const defaultPreferences: ReadingPreferences = {
-  lastReadSurah: null,
-  lastReadAyah: null,
+  lastRead: null,
   favoriteSurahs: [],
+  favoriteAyahs: [],
   fontSize: {
-    arabic: 28,
+    arabic: 32,
     latin: 14,
     translation: 16,
   },
@@ -57,8 +74,10 @@ export const defaultPreferences: ReadingPreferences = {
   showLatin: true,
   showTranslation: true,
   showTajwid: true,
+  showTafsir: false,
+  totalReadingTime: 0,
 };
 
 export function useReadingPreferences() {
-  return useLocalStorage<ReadingPreferences>('quran-preferences', defaultPreferences);
+  return useLocalStorage<ReadingPreferences>('quran-javanese-preferences', defaultPreferences);
 }
