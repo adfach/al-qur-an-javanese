@@ -78,12 +78,15 @@ const Index: React.FC = () => {
         </div>
       </section>
 
+      {/* Prayer Times - Below Search */}
+      <section className="container mx-auto px-4 py-4">
+        <PrayerTimesWidget />
+      </section>
+
       <main className="container mx-auto px-4 py-8 flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Sidebar */}
           <aside className="lg:col-span-1 space-y-4">
-            <PrayerTimesWidget />
-            
             {/* Last Read */}
             {lastReadSurah && preferences.lastRead && (
               <Link 
