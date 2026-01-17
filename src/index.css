@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Islamic Green Theme - Light Mode */
+    --background: 40 30% 98%;
+    --foreground: 150 20% 15%;
+
+    --card: 40 25% 96%;
+    --card-foreground: 150 20% 15%;
+
+    --popover: 40 25% 98%;
+    --popover-foreground: 150 20% 15%;
+
+    /* Primary - Islamic Green */
+    --primary: 156 45% 45%;
+    --primary-foreground: 40 30% 98%;
+
+    /* Secondary - Warm Sand */
+    --secondary: 35 30% 92%;
+    --secondary-foreground: 150 20% 20%;
+
+    /* Muted - Soft Cream */
+    --muted: 40 20% 94%;
+    --muted-foreground: 150 10% 45%;
+
+    /* Accent - Gold */
+    --accent: 42 75% 55%;
+    --accent-foreground: 150 20% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 20% 88%;
+    --input: 40 20% 90%;
+    --ring: 156 45% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom Quran Colors */
+    --quran-arabic: 150 20% 12%;
+    --quran-translation: 150 15% 30%;
+    --quran-latin: 150 10% 45%;
+
+    /* Tajwid Colors */
+    --tajwid-ikhfa: 200 70% 50%;
+    --tajwid-idgham: 280 60% 55%;
+    --tajwid-iqlab: 45 80% 50%;
+    --tajwid-ghunnah: 120 50% 45%;
+    --tajwid-qalqalah: 350 70% 55%;
+    --tajwid-mad: 25 80% 55%;
+
+    /* Ornament */
+    --ornament: 156 30% 70%;
+    --ornament-accent: 42 60% 60%;
+
+    --sidebar-background: 40 25% 96%;
+    --sidebar-foreground: 150 20% 15%;
+    --sidebar-primary: 156 45% 45%;
+    --sidebar-primary-foreground: 40 30% 98%;
+    --sidebar-accent: 35 30% 92%;
+    --sidebar-accent-foreground: 150 20% 20%;
+    --sidebar-border: 40 20% 88%;
+    --sidebar-ring: 156 45% 45%;
+  }
+
+  .dark {
+    --background: 150 20% 8%;
+    --foreground: 40 20% 95%;
+
+    --card: 150 18% 12%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 150 18% 10%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 156 50% 50%;
+    --primary-foreground: 150 20% 8%;
+
+    --secondary: 150 15% 18%;
+    --secondary-foreground: 40 20% 90%;
+
+    --muted: 150 15% 16%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 42 70% 50%;
+    --accent-foreground: 150 20% 8%;
+
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 40 20% 95%;
+
+    --border: 150 15% 20%;
+    --input: 150 15% 18%;
+    --ring: 156 50% 50%;
+
+    --quran-arabic: 40 20% 95%;
+    --quran-translation: 40 15% 80%;
+    --quran-latin: 40 10% 60%;
+
+    --ornament: 156 25% 35%;
+    --ornament-accent: 42 50% 45%;
+
+    --sidebar-background: 150 18% 10%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 156 50% 50%;
+    --sidebar-primary-foreground: 150 20% 8%;
+    --sidebar-accent: 150 15% 18%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 150 15% 20%;
+    --sidebar-ring: 156 50% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Arabic Quran Text */
+  .quran-arabic {
+    font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+    direction: rtl;
+    line-height: 2.2;
+    letter-spacing: 0.02em;
+  }
+
+  /* Latin Transliteration */
+  .quran-latin {
+    font-style: italic;
+  }
+}
+
+@layer utilities {
+
+  /* Smooth fade animations */
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Tajwid highlighting - Background colors with transparency */
+  /* Hukum Nun Mati & Tanwin */
+  .tajwid-izhar {
+    background-color: rgba(65, 166, 126, 0.2);
+    /* Hijau */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-ikhfa {
+    background-color: rgba(76, 175, 80, 0.2);
+    /* Hijau cerah */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-idgham {
+    background-color: rgba(255, 235, 59, 0.25);
+    /* Kuning */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-idgham-bila {
+    background-color: rgba(255, 193, 7, 0.25);
+    /* Kuning tua */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-iqlab {
+    background-color: rgba(33, 150, 243, 0.2);
+    /* Biru */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  /* Hukum Mim Mati */
+  .tajwid-ikhfa-syafawi {
+    background-color: rgba(156, 39, 176, 0.2);
+    /* Ungu */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-izhar-syafawi {
+    background-color: rgba(103, 58, 183, 0.2);
+    /* Ungu tua */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-idgham-syafawi {
+    background-color: rgba(233, 30, 99, 0.2);
+    /* Pink */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  /* Hukum Mad */
+  .tajwid-mad-asli {
+    background-color: rgba(255, 152, 0, 0.2);
+    /* Oranye */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-mad-wajib {
+    background-color: rgba(255, 87, 34, 0.25);
+    /* Oranye tua */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-mad-jaiz {
+    background-color: rgba(255, 193, 7, 0.2);
+    /* Amber */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-mad-lazim {
+    background-color: rgba(244, 67, 54, 0.25);
+    /* Merah */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-mad-arid {
+    background-color: rgba(233, 30, 99, 0.2);
+    /* Pink */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-mad-lin {
+    background-color: rgba(156, 39, 176, 0.15);
+    /* Ungu muda */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  /* Hukum Lainnya */
+  .tajwid-qalqalah {
+    background-color: rgba(244, 67, 54, 0.2);
+    /* Merah */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-ghunnah {
+    background-color: rgba(103, 58, 183, 0.2);
+    /* Ungu gelap */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-tafkhim {
+    background-color: rgba(121, 85, 72, 0.2);
+    /* Coklat */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-tarqiq {
+    background-color: rgba(0, 188, 212, 0.2);
+    /* Cyan */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .tajwid-lam-tarif {
+    background-color: rgba(0, 150, 136, 0.2);
+    /* Teal */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  /* Mad alias (backward compatibility) */
+  .tajwid-mad {
+    background-color: rgba(255, 152, 0, 0.2);
+    /* Oranye - sama dengan mad-asli */
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  /* Islamic ornament pattern */
+  .ornament-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30M15 15L45 45M45 15L15 45' stroke='%2341A67E' stroke-opacity='0.05' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  }
+
+  /* Scrollbar styling */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+}
