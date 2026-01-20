@@ -1,5 +1,5 @@
 import React from 'react';
-import { Book, Moon, Sun, Settings, Home } from 'lucide-react';
+import { Book, Moon, Sun, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useReadingPreferences } from '@/hooks/useLocalStorage';
 import { Link, useLocation } from 'react-router-dom';
@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" id="site-logo" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20 group-hover:shadow-primary/30 transition-shadow">
               <Book className="w-5 h-5 text-primary-foreground" />
             </div>
@@ -46,6 +46,7 @@ export const Header: React.FC = () => {
                 size="sm"
                 asChild
                 className="text-muted-foreground hover:text-foreground"
+                id="back-to-home"
               >
                 <Link to="/">
                   <Home className="w-4 h-4 mr-2" />
@@ -54,9 +55,12 @@ export const Header: React.FC = () => {
               </Button>
             )}
 
-            <FeedbackModal />
+            <div id="feedback-button">
+              <FeedbackModal />
+            </div>
 
             <Button
+              id="dark-mode-toggle"
               variant="ghost"
               size="icon"
               onClick={toggleDarkMode}

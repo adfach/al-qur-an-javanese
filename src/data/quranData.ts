@@ -44,7 +44,7 @@ export const tajwidRules: TajwidRule[] = [
     name: 'Ikhfa Haqiqi',
     nameArabic: 'إِخْفَاء حَقِيقِي',
     description: 'Menyamarkan bunyi nun mati/tanwin saat bertemu 15 huruf ikhfa dengan dengung.',
-    letters: 'ت ث ج د ذ ز س ش ص ض ط ظ ف ق ك',
+    letters: 'ت ث ج د ذ ز س ş ş ص ض ط ظ ف ق ك',
     example: 'مِنْ ثَمَرَةٍ → dibaca samar dengan dengung',
     color: 'tajwid-ikhfa',
   },
@@ -204,7 +204,7 @@ export const tajwidRules: TajwidRule[] = [
     nameArabic: 'تَرْقِيق',
     description: 'Membaca huruf ra dengan tipis (normal).',
     letters: 'ر (tipis)',
-    example: 'مِنْ رِبَا → ra dibaca tipis karena berharakat kasrah',
+    example: 'مِنْ rِبَا → ra dibaca tipis karena berharakat kasrah',
     color: 'tajwid-tarqiq',
   },
   {
@@ -281,7 +281,7 @@ export const surahs: Surah[] = [
   { number: 60, name: 'Al-Mumtahanah', nameArabic: 'الممتحنة', meaning: 'Wanita yang Diuji', totalAyahs: 13, revelation: 'Madaniyah', juz: [28] },
   { number: 61, name: 'Ash-Shaff', nameArabic: 'الصف', meaning: 'Barisan', totalAyahs: 14, revelation: 'Madaniyah', juz: [28] },
   { number: 62, name: 'Al-Jumu\'ah', nameArabic: 'الجمعة', meaning: 'Jumat', totalAyahs: 11, revelation: 'Madaniyah', juz: [28] },
-  { number: 63, name: 'Al-Munafiqun', nameArabic: 'المنافقون', meaning: 'Orang-orang Munafik', totalAyahs: 11, revelation: 'Madaniyah', juz: [28] },
+  { number: 63, name: 'Al-Munafiqun', nameArabic: 'المنافقon', meaning: 'Orang-orang Munafik', totalAyahs: 11, revelation: 'Madaniyah', juz: [28] },
   { number: 64, name: 'At-Taghabun', nameArabic: 'التغابن', meaning: 'Hari Ditampakkan Kesalahan', totalAyahs: 18, revelation: 'Madaniyah', juz: [28] },
   { number: 65, name: 'At-Talaq', nameArabic: 'الطلاق', meaning: 'Talak', totalAyahs: 12, revelation: 'Madaniyah', juz: [28] },
   { number: 66, name: 'At-Tahrim', nameArabic: 'التحريم', meaning: 'Pengharaman', totalAyahs: 12, revelation: 'Madaniyah', juz: [28] },
@@ -306,7 +306,7 @@ export const surahs: Surah[] = [
   { number: 85, name: 'Al-Buruj', nameArabic: 'البروج', meaning: 'Gugusan Bintang', totalAyahs: 22, revelation: 'Makkiyah', juz: [30] },
   { number: 86, name: 'At-Tariq', nameArabic: 'الطارق', meaning: 'Yang Datang di Malam Hari', totalAyahs: 17, revelation: 'Makkiyah', juz: [30] },
   { number: 87, name: 'Al-A\'la', nameArabic: 'الأعلى', meaning: 'Maha Tinggi', totalAyahs: 19, revelation: 'Makkiyah', juz: [30] },
-  { number: 88, name: 'Al-Gasyiyah', nameArabic: 'الغاشية', meaning: 'Hari Pembalasan', totalAyahs: 26, revelation: 'Makkiyah', juz: [30] },
+  { number: 88, name: 'Al-Gasyiyah', nameArabic: 'الغashiyah', meaning: 'Hari Pembalasan', totalAyahs: 26, revelation: 'Makkiyah', juz: [30] },
   { number: 89, name: 'Al-Fajr', nameArabic: 'الفجر', meaning: 'Fajar', totalAyahs: 30, revelation: 'Makkiyah', juz: [30] },
   { number: 90, name: 'Al-Balad', nameArabic: 'البلد', meaning: 'Negeri', totalAyahs: 20, revelation: 'Makkiyah', juz: [30] },
   { number: 91, name: 'Asy-Syams', nameArabic: 'الشمس', meaning: 'Matahari', totalAyahs: 15, revelation: 'Makkiyah', juz: [30] },
@@ -335,9 +335,8 @@ export const surahs: Surah[] = [
   { number: 114, name: 'An-Nas', nameArabic: 'الناس', meaning: 'Manusia', totalAyahs: 6, revelation: 'Makkiyah', juz: [30] },
 ];
 
-export const featuredSurahNumbers = [36, 18, 67, 56, 55, 1, 112, 113, 114]; // Yasin, Al-Kahfi, Al-Mulk, Al-Waqi'ah, Ar-Rahman, Al-Fatihah, Al-Ikhlas, Al-Falaq, An-Nas
+export const featuredSurahNumbers = [36, 18, 67, 56, 55, 1, 112, 113, 114];
 
-// Sample ayahs for Al-Fatihah
 export const sampleAyahs: Ayah[] = [
   {
     number: 1,

@@ -13,8 +13,10 @@ import { useReadingPreferences } from '@/hooks/useLocalStorage';
 import { fetchSurahData, EquranAyah } from '@/services/equranAPI';
 import { cn } from '@/lib/utils';
 import { useReadingTimer } from '@/hooks/useReadingTimer';
+import { useOnboarding } from '@/hooks/useOnboarding';
 
 const SurahDetail: React.FC = () => {
+  useOnboarding('surah');
   const { surahNumber } = useParams<{ surahNumber: string }>();
   const [preferences, setPreferences] = useReadingPreferences();
   const [showTajwid, setShowTajwid] = useState(false);
@@ -63,7 +65,7 @@ const SurahDetail: React.FC = () => {
     if (surahNum) {
       loadAyahs();
     }
-  }, [surahNum]);
+  }, [surahNum, surah?.juz]);
 
   // Update last read
   useEffect(() => {
@@ -74,7 +76,7 @@ const SurahDetail: React.FC = () => {
         lastReadAyah: 1,
       }));
     }
-  }, [surahNum]);
+  }, [surahNum, surah, setPreferences]);
 
   const toggleFavorite = () => {
     const newFavorites = isFavorite
@@ -130,7 +132,7 @@ const SurahDetail: React.FC = () => {
           <div className="max-w-3xl mx-auto">
             {/* Navigation */}
             <div className="flex items-center justify-between mb-6">
-              <Button variant="ghost" asChild className="gap-2">
+              <Button variant="ghost" asChild className="gap-2" id="back-button">
                 <Link to="/">
                   <ArrowLeft className="w-4 h-4" />
                   <span className="hidden sm:inline">Daftar Surah</span>
@@ -138,8 +140,11 @@ const SurahDetail: React.FC = () => {
               </Button>
 
               <div className="flex items-center gap-2">
-                <FontSettings />
+                <div id="font-settings">
+                  <FontSettings />
+                </div>
                 <Button
+                  id="tajwid-button"
                   variant="outline"
                   size="sm"
                   onClick={() => setShowTajwid(true)}
@@ -174,6 +179,7 @@ const SurahDetail: React.FC = () => {
 
               <div className="flex items-center justify-center gap-3">
                 <Button
+                  id="favorite-surah"
                   variant={isFavorite ? "default" : "outline"}
                   size="sm"
                   onClick={toggleFavorite}
@@ -223,7 +229,7 @@ const SurahDetail: React.FC = () => {
               </Button>
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-6" id="ayah-list">
               {ayahs.map((ayah, index) => (
                 <div
                   key={ayah.number}

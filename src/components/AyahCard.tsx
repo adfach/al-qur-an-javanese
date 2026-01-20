@@ -3,7 +3,6 @@ import { Share2, Bookmark, Play, Pause } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Ayah } from '@/data/quranData';
 import { useReadingPreferences } from '@/hooks/useLocalStorage';
-import { cn } from '@/lib/utils';
 
 interface AyahCardProps {
   ayah: Ayah;
@@ -89,7 +88,7 @@ export const AyahCard: React.FC<AyahCardProps> = ({ ayah, surahName, surahNameAr
 
       {/* Actions */}
       <div className="flex items-center justify-end gap-2 mt-4 pt-4 border-t border-border opacity-0 group-hover:opacity-100 transition-opacity">
-        {/* Putar and Tandai buttons temporarily disabled */}
+        {/* Putar and Tandai buttons temporarily disabled per user request in conversation 8987dd20 */}
         {/* 
         <Button
           variant="ghost"

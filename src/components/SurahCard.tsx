@@ -8,22 +8,23 @@ import { cn } from '@/lib/utils';
 interface SurahCardProps {
   surah: Surah;
   isFeatured?: boolean;
+  isFavorite?: boolean;
 }
 
-export const SurahCard: React.FC<SurahCardProps> = ({ surah, isFeatured = false }) => {
+export const SurahCard: React.FC<SurahCardProps> = ({ surah, isFeatured = false, isFavorite: propIsFavorite }) => {
   const [preferences, setPreferences] = useReadingPreferences();
-  
-  const isFavorite = preferences.favoriteSurahs.includes(surah.number);
+
+  const isFavorite = propIsFavorite ?? preferences.favoriteSurahs.includes(surah.number);
   const isLastRead = preferences.lastReadSurah === surah.number;
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const newFavorites = isFavorite
       ? preferences.favoriteSurahs.filter(n => n !== surah.number)
       : [...preferences.favoriteSurahs, surah.number];
-    
+
     setPreferences({ ...preferences, favoriteSurahs: newFavorites });
   };
 
@@ -40,7 +41,7 @@ export const SurahCard: React.FC<SurahCardProps> = ({ surah, isFeatured = false 
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02] ornament-pattern" />
-      
+
       {/* Last Read Badge */}
       {isLastRead && (
         <div className="absolute top-2 right-2 px-2 py-0.5 bg-accent text-accent-foreground text-xs rounded-full font-medium">
@@ -83,8 +84,8 @@ export const SurahCard: React.FC<SurahCardProps> = ({ surah, isFeatured = false 
             onClick={toggleFavorite}
             className={cn(
               "p-2 rounded-lg transition-colors",
-              isFavorite 
-                ? "text-red-500 hover:bg-red-50 dark:hover:bg-red-950" 
+              isFavorite
+                ? "text-red-500 hover:bg-red-50 dark:hover:bg-red-950"
                 : "text-muted-foreground hover:text-red-500 hover:bg-muted"
             )}
           >

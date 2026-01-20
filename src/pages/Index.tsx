@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Book, Heart, Clock, Grid3X3, List, Star, ArrowRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Header } from '@/components/Header';
 import { SurahCard } from '@/components/SurahCard';
@@ -12,10 +11,11 @@ import { surahs, featuredSurahNumbers } from '@/data/quranData';
 import { useReadingPreferences } from '@/hooks/useLocalStorage';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { useOnboarding } from '@/hooks/useOnboarding';
 
 const Index: React.FC = () => {
+  useOnboarding('home');
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState<'surah' | 'juz'>('surah');
   const [showFavorites, setShowFavorites] = useState(false);
   const [preferences] = useReadingPreferences();
 
@@ -49,7 +49,10 @@ const Index: React.FC = () => {
   const juzGroups = useMemo(() => {
     const groups: { [key: number]: typeof surahs } = {};
     for (let i = 1; i <= 30; i++) {
-      groups[i] = surahs.filter((s) => s.juz.includes(i));
+      const surahsInJuz = surahs.filter((s) => s.juz.includes(i));
+      if (surahsInJuz.length > 0) {
+        groups[i] = surahsInJuz;
+      }
     }
     return groups;
   }, []);
@@ -77,7 +80,7 @@ const Index: React.FC = () => {
             </p>
 
             {/* Search */}
-            <div className="relative max-w-md mx-auto">
+            <div id="search-container" className="relative max-w-md mx-auto">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
               <Input
                 type="text"
@@ -93,7 +96,7 @@ const Index: React.FC = () => {
 
       <main className="container mx-auto px-4 py-8">
         {/* Prayer Times Widget - Top, Full Width */}
-        <div className="mb-8 animate-slide-up">
+        <div id="prayer-times" className="mb-8 animate-slide-up">
           <PrayerTimesWidget />
         </div>
 
@@ -180,23 +183,8 @@ const Index: React.FC = () => {
           </section>
         )}
 
-        {/* User Favorites */}
-        {!searchQuery && favoriteSurahs.length > 0 && (
-          <section className="mb-10 animate-slide-up" style={{ animationDelay: '0.15s' }}>
-            <div className="flex items-center gap-2 mb-4">
-              <Heart className="w-5 h-5 text-red-500" />
-              <h3 className="text-lg font-semibold text-foreground">Favorit Anda</h3>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {favoriteSurahs.map((surah) => (
-                <SurahCard key={surah.number} surah={surah} />
-              ))}
-            </div>
-          </section>
-        )}
-
         {/* All Surahs */}
-        <section className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
+        <section id="surah-list" className="animate-slide-up" style={{ animationDelay: '0.2s' }}>
           <Tabs defaultValue="surah" className="w-full">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-2">

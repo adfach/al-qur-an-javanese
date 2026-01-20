@@ -46,13 +46,27 @@
     --quran-translation: 150 15% 30%;
     --quran-latin: 150 10% 45%;
 
-    /* Tajwid Colors */
+    /* Tajwid Colors - 20 Hukum */
     --tajwid-ikhfa: 200 70% 50%;
     --tajwid-idgham: 280 60% 55%;
     --tajwid-iqlab: 45 80% 50%;
     --tajwid-ghunnah: 120 50% 45%;
     --tajwid-qalqalah: 350 70% 55%;
     --tajwid-mad: 25 80% 55%;
+    --tajwid-idzhar: 180 60% 45%;
+    --tajwid-idgham-mimi: 260 55% 60%;
+    --tajwid-ikhfa-syafawi: 190 65% 48%;
+    --tajwid-mad-wajib: 15 75% 52%;
+    --tajwid-mad-jaiz: 30 70% 50%;
+    --tajwid-mad-lazim: 0 65% 55%;
+    --tajwid-idgham-bighunnah: 270 55% 58%;
+    --tajwid-idgham-bilaghunnah: 290 50% 55%;
+    --tajwid-waqf: 100 50% 45%;
+    --tajwid-hamzah-washal: 210 60% 50%;
+    --tajwid-tafkhim: 330 55% 55%;
+    --tajwid-tarqiq: 160 50% 50%;
+    --tajwid-lafdz-jalalah: 156 70% 40%;
+    --tajwid-ra: 340 60% 52%;
 
     /* Ornament */
     --ornament: 156 30% 70%;
@@ -188,147 +202,122 @@
   }
 
   /* Tajwid highlighting - Background colors with transparency */
-  /* Hukum Nun Mati & Tanwin */
   .tajwid-izhar {
     background-color: rgba(65, 166, 126, 0.2);
-    /* Hijau */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-ikhfa {
     background-color: rgba(76, 175, 80, 0.2);
-    /* Hijau cerah */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-idgham {
     background-color: rgba(255, 235, 59, 0.25);
-    /* Kuning */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-idgham-bila {
     background-color: rgba(255, 193, 7, 0.25);
-    /* Kuning tua */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-iqlab {
     background-color: rgba(33, 150, 243, 0.2);
-    /* Biru */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
-  /* Hukum Mim Mati */
   .tajwid-ikhfa-syafawi {
     background-color: rgba(156, 39, 176, 0.2);
-    /* Ungu */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-izhar-syafawi {
     background-color: rgba(103, 58, 183, 0.2);
-    /* Ungu tua */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-idgham-syafawi {
     background-color: rgba(233, 30, 99, 0.2);
-    /* Pink */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
-  /* Hukum Mad */
   .tajwid-mad-asli {
     background-color: rgba(255, 152, 0, 0.2);
-    /* Oranye */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-mad-wajib {
     background-color: rgba(255, 87, 34, 0.25);
-    /* Oranye tua */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-mad-jaiz {
     background-color: rgba(255, 193, 7, 0.2);
-    /* Amber */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-mad-lazim {
     background-color: rgba(244, 67, 54, 0.25);
-    /* Merah */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-mad-arid {
     background-color: rgba(233, 30, 99, 0.2);
-    /* Pink */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-mad-lin {
     background-color: rgba(156, 39, 176, 0.15);
-    /* Ungu muda */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
-  /* Hukum Lainnya */
   .tajwid-qalqalah {
     background-color: rgba(244, 67, 54, 0.2);
-    /* Merah */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-ghunnah {
     background-color: rgba(103, 58, 183, 0.2);
-    /* Ungu gelap */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-tafkhim {
     background-color: rgba(121, 85, 72, 0.2);
-    /* Coklat */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-tarqiq {
     background-color: rgba(0, 188, 212, 0.2);
-    /* Cyan */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
   .tajwid-lam-tarif {
     background-color: rgba(0, 150, 136, 0.2);
-    /* Teal */
     padding: 2px 4px;
     border-radius: 4px;
   }
 
-  /* Mad alias (backward compatibility) */
   .tajwid-mad {
     background-color: rgba(255, 152, 0, 0.2);
-    /* Oranye - sama dengan mad-asli */
     padding: 2px 4px;
     border-radius: 4px;
   }
