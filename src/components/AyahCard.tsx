@@ -49,7 +49,10 @@ export const AyahCard: React.FC<AyahCardProps> = ({ ayah, surahName, surahNameAr
   };
 
   return (
-    <div className="group relative p-6 rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 animate-fade-in">
+    <div
+      className="group relative p-6 rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300 animate-fade-in"
+      data-ayah={ayah.number}
+    >
       {/* Ayah Number Badge */}
       <div className="absolute -top-3 left-6 px-3 py-1 bg-primary text-primary-foreground rounded-full text-sm font-medium shadow-md">
         Ayat {ayah.number}

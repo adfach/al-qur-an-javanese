@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Info, Share2, Heart, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Header } from '@/components/Header';
 import { AyahCard } from '@/components/AyahCard';
 import { TajwidPanel } from '@/components/TajwidPanel';
-import { FontSettings } from '@/components/FontSettings';
+// import { FontSettings } from '@/components/FontSettings';
 import { Footer } from '@/components/Footer';
 import { IslamicOrnament, Bismillah } from '@/components/IslamicOrnament';
 import { surahs, Ayah } from '@/data/quranData';
@@ -23,6 +23,9 @@ const SurahDetail: React.FC = () => {
   const [ayahs, setAyahs] = useState<Ayah[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentAyah, setCurrentAyah] = useState<number>(1);
+  const hasAutoScrolled = useRef(false);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Start reading timer
   useReadingTimer();
@@ -67,16 +70,92 @@ const SurahDetail: React.FC = () => {
     }
   }, [surahNum, surah?.juz]);
 
-  // Update last read
+  // Update last read surah (only once per surah)
   useEffect(() => {
     if (surah) {
       setPreferences((prev) => ({
         ...prev,
         lastReadSurah: surahNum,
-        lastReadAyah: 1,
+        lastReadAyah: prev.surahProgress[surahNum] || 1,
       }));
     }
+    // Reset auto-scroll flag when changing surah
+    hasAutoScrolled.current = false;
   }, [surahNum, surah, setPreferences]);
+
+  // Auto-scroll to last read position (only once per page load)
+  useEffect(() => {
+    if (!loading && ayahs.length > 0 && !hasAutoScrolled.current) {
+      const lastReadAyah = preferences.surahProgress[surahNum] || 1;
+
+      // Only scroll if user has read beyond ayah 1
+      if (lastReadAyah > 1) {
+        hasAutoScrolled.current = true; // Prevent repeated auto-scrolls
+        setTimeout(() => {
+          const element = document.querySelector(`[data-ayah="${lastReadAyah}"]`);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 600); // Small delay to ensure DOM is ready
+      } else {
+        hasAutoScrolled.current = true; // Mark as done even if no scroll needed
+      }
+    }
+  }, [loading, ayahs.length, surahNum, preferences.surahProgress]);
+
+  // Track visible ayahs with IntersectionObserver
+  useEffect(() => {
+    if (ayahs.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            const ayahNum = parseInt(entry.target.getAttribute('data-ayah') || '1');
+            setCurrentAyah(ayahNum);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: '-20% 0px -20% 0px', // Trigger when ayah is in middle of viewport
+      }
+    );
+
+    // Observe all ayah elements
+    const ayahElements = document.querySelectorAll('[data-ayah]');
+    ayahElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [ayahs]);
+
+  // Save reading progress when current ayah changes (debounced)
+  useEffect(() => {
+    if (currentAyah > 0 && hasAutoScrolled.current) {
+      // Clear previous timeout
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+
+      // Debounce save to avoid too frequent updates
+      saveTimeoutRef.current = setTimeout(() => {
+        setPreferences((prev) => ({
+          ...prev,
+          surahProgress: {
+            ...prev.surahProgress,
+            [surahNum]: currentAyah,
+          },
+          lastReadAyah: currentAyah,
+        }));
+      }, 1000); // Save after 1 second of no scroll
+    }
+
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [currentAyah, surahNum, setPreferences]);
 
   const toggleFavorite = () => {
     const newFavorites = isFavorite
@@ -140,9 +219,9 @@ const SurahDetail: React.FC = () => {
               </Button>
 
               <div className="flex items-center gap-2">
-                <div id="font-settings">
+                {/* <div id="font-settings">
                   <FontSettings />
-                </div>
+                </div> */}
                 <Button
                   id="tajwid-button"
                   variant="outline"

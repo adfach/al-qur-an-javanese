@@ -59,6 +59,7 @@ export interface ReadingPreferences {
   showLatin: boolean;
   showTranslation: boolean;
   showTajwid: boolean;
+  surahProgress: Record<number, number>; // Track last read ayah per surah
 }
 
 export const defaultPreferences: ReadingPreferences = {
@@ -77,6 +78,7 @@ export const defaultPreferences: ReadingPreferences = {
   showLatin: true,
   showTranslation: true,
   showTajwid: true,
+  surahProgress: {},
 };
 
 export function useReadingPreferences() {

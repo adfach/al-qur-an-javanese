@@ -113,15 +113,6 @@ export const useOnboarding = (page: 'home' | 'surah') => {
                             side: "bottom",
                             align: 'center'
                         }
-                    },
-                    {
-                        element: '#ayah-list',
-                        popover: {
-                            title: 'Daftar Ayat',
-                            description: 'Baca ayat-ayat Al-Qur\'an beserta terjemahan dan transliterasi latinnya di sini.',
-                            side: "top",
-                            align: 'center'
-                        }
                     }
                 ],
                 onDestroyed: () => {
